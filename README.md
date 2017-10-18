@@ -1,7 +1,12 @@
 LaraLike
 ============
-Importsnt note: this product is forked and aedit from base [laravel-likeable](https://github.com/rtconner/laravel-likeable) package
+Importsnt note: this product is forked and aedit from base [laravel-likeable](https://github.com/rtconner/laravel-likeable) package.
+
 [![Build Status](https://travis-ci.org/inpin/lara-like.svg?branch=master)](https://travis-ci.org/inpin/lara-like)
+[![Latest Stable Version](https://poser.pugx.org/inpin/lara-like/v/stable)](https://packagist.org/packages/inpin/lara-like)
+[![Total Downloads](https://poser.pugx.org/inpin/lara-like/downloads)](https://packagist.org/packages/inpin/lara-like)
+[![Latest Unstable Version](https://poser.pugx.org/inpin/lara-like/v/unstable)](https://packagist.org/packages/inpin/lara-like)
+[![License](https://poser.pugx.org/inpin/lara-like/license)](https://packagist.org/packages/inpin/lara-like)
 
 Trait for Laravel Eloquent models to allow easy implementation of a "like" or "favorite" or "remember" or what ever you want features.
 
