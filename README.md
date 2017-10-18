@@ -1,6 +1,7 @@
 LaraLike
 ============
-Importsnt note: this product is forked and aedit from base [lara-lika](https://github.com/inpin/lara-like) package
+Importsnt note: this product is forked and aedit from base [laravel-likeable](https://github.com/rtconner/laravel-likeable) package
+[![Build Status](https://travis-ci.org/inpin/lara-like.svg?branch=master)](https://travis-ci.org/inpin/lara-like)
 
 Trait for Laravel Eloquent models to allow easy implementation of a "like" or "favorite" or "remember" or what ever you want features.
 
