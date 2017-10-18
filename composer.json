@@ -1,0 +1,44 @@
+{
+
+    "name": "inpin/lara-like",
+    "description": "Add Likeable trait to Laravel Eloquent models",
+    "type": "package",
+    "license": "MIT",
+    "keywords": ["trait", "laravel", "laravel5", "eloquent", "likeable", "likable", "like", "remember", "follow", "favorite", "favourite"],
+    "authors": [
+        {
+            "name": "Mohammad Nourinik",
+            "email": "enourinick@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0",
+        "illuminate/database": ">=5.0",
+        "illuminate/support": ">=5.0",
+        "laravel/framework": ">=5.5"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^3.5",
+        "orchestra/database": "^3.5",
+        "phpunit/phpunit": "~6.0",
+        "mockery/mockery": "~0.9",
+        "fzaninotto/faker": "~1.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Inpin\\LaraLike\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Inpin\\LaraLike\\LaraLikeServiceProvider"
+            ]
+        }
+    }
+}
