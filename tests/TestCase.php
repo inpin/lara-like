@@ -3,6 +3,7 @@
 namespace Tests;
 
 use Inpin\LaraLike\LaraLikeServiceProvider;
+use Orchestra\Database\ConsoleServiceProvider;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
@@ -10,7 +11,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     {
         return [
             LaraLikeServiceProvider::class,
-            \Orchestra\Database\ConsoleServiceProvider::class,
+            ConsoleServiceProvider::class,
         ];
     }
 
