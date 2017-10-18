@@ -11,6 +11,6 @@ before_script:
 
 script: vendor/bin/phpunit --verbose
 
-notifications
+notifications:
   email:
     on_success: [never]
