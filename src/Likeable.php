@@ -50,7 +50,7 @@ trait Likeable
     public function getLikeCountAttribute()
     {
         return $this->likeCounter()->where('type', 'like')->exists()
-            ? $this->likeCounter()->when('type', 'like')->first()->count
+            ? $this->likeCounter()->where('type', 'like')->first()->count
             : 0;
     }
 
