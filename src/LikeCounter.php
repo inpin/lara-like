@@ -17,14 +17,15 @@ class LikeCounter extends Model
     }
 
     /**
-     * Delete all counts of the given model, and recount them and insert new counts
+     * Delete all counts of the given model, and recount them and insert new counts.
      *
      * @param string $modelClass (should match Model::$morphClass)
+     *
      * @throws \Exception
      */
     public static function rebuild($modelClass)
     {
-        if(empty($modelClass)) {
+        if (empty($modelClass)) {
             throw new \Exception('$modelClass cannot be empty/null. Maybe set the $morphClass variable on your model.');
         }
 
@@ -37,7 +38,6 @@ class LikeCounter extends Model
 
         $inserts = $results->toArray();
 
-        DB::table((new static)->table)->insert($inserts);
+        DB::table((new static())->table)->insert($inserts);
     }
-
 }

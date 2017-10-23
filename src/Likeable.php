@@ -17,7 +17,7 @@ trait Likeable
     {
         if (static::removeLikesOnDelete()) {
             static::deleting(function ($model) {
-                /** @var Likeable $model */
+                /* @var Likeable $model */
                 $model->removeLikes();
             });
         }
@@ -25,10 +25,12 @@ trait Likeable
 
     /**
      * Fetch records that are liked by a given user.
-     * Ex: Book::whereLikedBy(123)->get();
-     * @param Builder $query
+     * Ex: Book::whereLikedBy(123)->get();.
+     *
+     * @param Builder          $query
      * @param User|string|null $guard
-     * @param string $type
+     * @param string           $type
+     *
      * @return \Illuminate\Database\Eloquent\Builder|static
      */
     public function scopeWhereLikedBy($query, $guard = null, $type = 'like')
@@ -38,14 +40,14 @@ trait Likeable
         }
 
         return $query->whereHas('likes', function ($query) use ($type, $guard) {
-            /** @var Builder $query */
+            /* @var Builder $query */
             $query->where('user_id', '=', $guard->id)->where('type', $type);
         });
     }
 
 
     /**
-     * Populate the $model->likes attribute
+     * Populate the $model->likes attribute.
      */
     public function getLikeCountAttribute()
     {
@@ -55,7 +57,7 @@ trait Likeable
     }
 
     /**
-     * Collection of the likes on this record
+     * Collection of the likes on this record.
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
@@ -66,7 +68,8 @@ trait Likeable
 
     /**
      * Counter is a record that stores the total likes for the
-     * morphed record
+     * morphed record.
+     *
      * @return \Illuminate\Database\Eloquent\Relations\MorphOne
      */
     public function likeCounter()
@@ -77,7 +80,7 @@ trait Likeable
     /**
      * Add a like for this record by the given user by given type.
      *
-     * @param string|User|integer $guard - The guard of current user, If instance of Illuminate\Foundation\Auth\User use as user
+     * @param string|User|int $guard - The guard of current user, If instance of Illuminate\Foundation\Auth\User use as user
      * @param $type - If given store as type
      */
     public function like($guard = null, $type = 'like')
@@ -106,7 +109,7 @@ trait Likeable
     /**
      * Remove a like from this record for the given user and given type.
      *
-     * @param string|User|integer $guard - The guard of current user, If instance of Illuminate\Foundation\Auth\User use as user
+     * @param string|User|int $guard - The guard of current user, If instance of Illuminate\Foundation\Auth\User use as user.
      * @param $type - If given store as type
      */
     public function unlike($guard = null, $type = 'like')
@@ -134,11 +137,12 @@ trait Likeable
     }
 
     /**
-     * Has the currently logged in user already "liked" the current object
+     * Has the currently logged in user already "liked" the current object.
      *
      * @param string $guard - The guard of current user, If instance of Illuminate\Foundation\Auth\User use as user
      * @param $type - If given store as type
-     * @return boolean
+     *
+     * @return bool
      */
     public function liked($guard = null, $type = 'like')
     {
@@ -146,14 +150,14 @@ trait Likeable
             $guard = $this->loggedInUser($guard);
         }
 
-        return (bool)$this->likes()
+        return $this->likes()
             ->where('user_id', '=', $guard->id)
             ->where('type', $type)
             ->exists();
     }
 
     /**
-     * Private. Increment the total like count stored in the counter
+     * Private. Increment the total like count stored in the counter.
      *
      * @param string $type
      */
@@ -165,7 +169,7 @@ trait Likeable
             $counter->count++;
             $counter->save();
         } else {
-            $counter = new LikeCounter;
+            $counter = new LikeCounter();
             $counter->count = 1;
             $counter->type = $type;
             $this->likeCounter()->save($counter);
@@ -192,7 +196,8 @@ trait Likeable
     }
 
     /**
-     * Fetch the primary ID of the currently logged in user
+     * Fetch the primary ID of the currently logged in user.
+     *
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */
     public function loggedInUser($guard)
@@ -201,9 +206,10 @@ trait Likeable
     }
 
     /**
-     * Did the currently logged in user like this model
-     * Example : if($book->liked) { }
-     * @return boolean
+     * Did the currently logged in user like this model.
+     * Example : if($book->liked) { }.
+     *
+     * @return bool
      */
     public function getLikedAttribute()
     {
@@ -211,8 +217,8 @@ trait Likeable
     }
 
     /**
-     * Should remove likes on model row delete (defaults to true)
-     * public static removeLikesOnDelete = false;
+     * Should remove likes on model row delete (defaults to true).
+     * public static removeLikesOnDelete = false;.
      */
     public static function removeLikesOnDelete()
     {
@@ -222,7 +228,8 @@ trait Likeable
     }
 
     /**
-     * Delete likes related to the current record
+     * Delete likes related to the current record.
+     *
      * @param string $type
      */
     public function removeLikes($type = 'like')

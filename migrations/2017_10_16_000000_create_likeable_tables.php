@@ -8,7 +8,7 @@ class CreateLikeableTables extends Migration
 {
     public function up()
     {
-        Schema::create('laralike_likes', function(Blueprint $table) {
+        Schema::create('laralike_likes', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
             $table->string('type')->default('like');
@@ -17,7 +17,7 @@ class CreateLikeableTables extends Migration
             $table->unique(['likeable_id', 'likeable_type', 'user_id', 'type'], 'likeable_likes_unique');
         });
 
-        Schema::create('laralike_like_counters', function(Blueprint $table) {
+        Schema::create('laralike_like_counters', function (Blueprint $table) {
             $table->increments('id');
             $table->string('type')->default('like');
             $table->morphs('likeable');

@@ -25,7 +25,7 @@ class CommonTest extends TestCase
 
         $this->artisan('migrate', [
             '--database' => 'testbench',
-            '--realpath' => realpath(__DIR__ . '/../migrations'),
+            '--realpath' => realpath(__DIR__.'/../migrations'),
         ]);
 
         $this->loadLaravelMigrations(['--database' => 'testbench']);
@@ -37,9 +37,9 @@ class CommonTest extends TestCase
     {
         $app['config']->set('database.default', 'testbench');
         $app['config']->set('database.connections.testbench', [
-            'driver' => 'sqlite',
+            'driver'   => 'sqlite',
             'database' => ':memory:',
-            'prefix' => '',
+            'prefix'   => '',
         ]);
 
         Schema::create('books', function ($table) {
@@ -55,7 +55,7 @@ class CommonTest extends TestCase
     }
 
     /**
-     * Create a random user with fake information
+     * Create a random user with fake information.
      *
      * @return User|#$this|Eloquent
      */
@@ -69,7 +69,7 @@ class CommonTest extends TestCase
     }
 
     /**
-     * Create a random stub with fake information
+     * Create a random stub with fake information.
      *
      * @return Stub|$this|Eloquent
      */
@@ -85,15 +85,15 @@ class CommonTest extends TestCase
         $user = $this->createRandomUser();
         $stub = $this->createRandomStub();
         $this->actingAs($user);
-        /** @var Stub $stub */
+        /* @var Stub $stub */
 
         $stub->like();
 
         $this->assertDatabaseHas('laralike_likes', [
             'likeable_type' => $stub->getMorphClass(),
-            'likeable_id' => $stub->id,
-            'user_id' => $user->id,
-            'type' => 'like',
+            'likeable_id'   => $stub->id,
+            'user_id'       => $user->id,
+            'type'          => 'like',
         ]);
 
         $this->assertEquals(1, $stub->likeCount);
@@ -104,22 +104,22 @@ class CommonTest extends TestCase
         $user = $this->createRandomUser();
         $stub = $this->createRandomStub();
         $this->actingAs($user);
-        /** @var Stub $stub */
+        /* @var Stub $stub */
 
         $stub->like(null, 'bookmark');
 
         $this->assertDatabaseHas('laralike_likes', [
             'likeable_type' => $stub->getMorphClass(),
-            'likeable_id' => $stub->id,
-            'user_id' => $user->id,
-            'type' => 'bookmark',
+            'likeable_id'   => $stub->id,
+            'user_id'       => $user->id,
+            'type'          => 'bookmark',
         ]);
 
         $this->assertDatabaseHas('laralike_like_counters', [
             'likeable_type' => $stub->getMorphClass(),
-            'likeable_id' => $stub->id,
-            'count' => 1,
-            'type' => 'bookmark',
+            'likeable_id'   => $stub->id,
+            'count'         => 1,
+            'type'          => 'bookmark',
         ]);
 
         $this->assertEquals(0, $stub->likeCount);
@@ -130,56 +130,55 @@ class CommonTest extends TestCase
         $user = $this->createRandomUser();
         $stub = $this->createRandomStub();
         $this->actingAs($user);
-        /** @var Stub $stub */
+        /* @var Stub $stub */
 
         $stub->like();
         $stub->like(null, 'bookmark');
 
         $this->assertDatabaseHas('laralike_likes', [
             'likeable_type' => $stub->getMorphClass(),
-            'likeable_id' => $stub->id,
-            'user_id' => $user->id,
-            'type' => 'like',
+            'likeable_id'   => $stub->id,
+            'user_id'       => $user->id,
+            'type'          => 'like',
         ]);
 
         $this->assertDatabaseHas('laralike_likes', [
             'likeable_type' => $stub->getMorphClass(),
-            'likeable_id' => $stub->id,
-            'user_id' => $user->id,
-            'type' => 'bookmark',
+            'likeable_id'   => $stub->id,
+            'user_id'       => $user->id,
+            'type'          => 'bookmark',
         ]);
 
         $this->assertDatabaseHas('laralike_like_counters', [
             'likeable_type' => $stub->getMorphClass(),
-            'likeable_id' => $stub->id,
-            'type' => 'like',
+            'likeable_id'   => $stub->id,
+            'type'          => 'like',
         ]);
 
         $this->assertDatabaseHas('laralike_like_counters', [
             'likeable_type' => $stub->getMorphClass(),
-            'likeable_id' => $stub->id,
-            'type' => 'bookmark',
+            'likeable_id'   => $stub->id,
+            'type'          => 'bookmark',
         ]);
-
     }
 
     public function testLikeWithoutUser()
     {
-        /** @var Stub $stub */
+        /* @var Stub $stub */
         $stub = $this->createRandomStub();
 
         $stub->like(0);
 
         $this->assertDatabaseMissing('laralike_likes', [
             'likeable_type' => $stub->getMorphClass(),
-            'likeable_id' => $stub->id,
-            'type' => 'like',
+            'likeable_id'   => $stub->id,
+            'type'          => 'like',
         ]);
 
         $this->assertDatabaseHas('laralike_like_counters', [
             'likeable_type' => $stub->getMorphClass(),
-            'likeable_id' => $stub->id,
-            'type' => 'like',
+            'likeable_id'   => $stub->id,
+            'type'          => 'like',
         ]);
 
         $this->assertEquals(1, $stub->likeCount);
@@ -187,22 +186,22 @@ class CommonTest extends TestCase
 
     public function testLikeWithoutUserWithType()
     {
-        /** @var Stub $stub */
+        /* @var Stub $stub */
         $stub = $this->createRandomStub();
 
         $stub->like(0, 'bookmark');
 
         $this->assertDatabaseMissing('laralike_likes', [
             'likeable_type' => $stub->getMorphClass(),
-            'likeable_id' => $stub->id,
-            'type' => 'bookmark',
+            'likeable_id'   => $stub->id,
+            'type'          => 'bookmark',
         ]);
 
         $this->assertDatabaseHas('laralike_like_counters', [
             'likeable_type' => $stub->getMorphClass(),
-            'likeable_id' => $stub->id,
-            'count' => 1,
-            'type' => 'bookmark',
+            'likeable_id'   => $stub->id,
+            'count'         => 1,
+            'type'          => 'bookmark',
         ]);
 
         $this->assertEquals(0, $stub->likeCount);
@@ -226,9 +225,9 @@ class CommonTest extends TestCase
         foreach ($users as $user) {
             $this->assertDatabaseHas('laralike_likes', [
                 'likeable_type' => $stub->getMorphClass(),
-                'likeable_id' => $stub->id,
-                'user_id' => $user->id,
-                'type' => 'like',
+                'likeable_id'   => $stub->id,
+                'user_id'       => $user->id,
+                'type'          => 'like',
             ]);
         }
         $this->assertEquals(4, $stub->likeCount);
@@ -252,17 +251,17 @@ class CommonTest extends TestCase
         foreach ($users as $user) {
             $this->assertDatabaseHas('laralike_likes', [
                 'likeable_type' => $stub->getMorphClass(),
-                'likeable_id' => $stub->id,
-                'user_id' => $user->id,
-                'type' => 'bookmark',
+                'likeable_id'   => $stub->id,
+                'user_id'       => $user->id,
+                'type'          => 'bookmark',
             ]);
         }
 
         $this->assertDatabaseHas('laralike_like_counters', [
             'likeable_type' => $stub->getMorphClass(),
-            'likeable_id' => $stub->id,
-            'count' => 4,
-            'type' => 'bookmark',
+            'likeable_id'   => $stub->id,
+            'count'         => 4,
+            'type'          => 'bookmark',
         ]);
 
         $this->assertEquals(0, $stub->likeCount);
@@ -289,9 +288,9 @@ class CommonTest extends TestCase
 
         $this->assertDatabaseMissing('laralike_likes', [
             'likeable_type' => $stub->getMorphClass(),
-            'likeable_id' => $stub->id,
-            'user_id' => $user->id,
-            'type' => 'like',
+            'likeable_id'   => $stub->id,
+            'user_id'       => $user->id,
+            'type'          => 'like',
         ]);
 
         $this->assertEquals(0, $stub->likeCount);
@@ -307,9 +306,9 @@ class CommonTest extends TestCase
 
         $this->assertDatabaseMissing('laralike_likes', [
             'likeable_type' => $stub->getMorphClass(),
-            'likeable_id' => $stub->id,
-            'user_id' => $user->id,
-            'type' => 'like',
+            'likeable_id'   => $stub->id,
+            'user_id'       => $user->id,
+            'type'          => 'like',
         ]);
 
         $this->assertEquals(0, $stub->likeCount);
@@ -325,9 +324,9 @@ class CommonTest extends TestCase
 
         $this->assertDatabaseMissing('laralike_likes', [
             'likeable_type' => $stub->getMorphClass(),
-            'likeable_id' => $stub->id,
-            'user_id' => $user->id,
-            'type' => 'bookmark',
+            'likeable_id'   => $stub->id,
+            'user_id'       => $user->id,
+            'type'          => 'bookmark',
         ]);
 
         $this->assertEquals(0, $stub->likeCount);
@@ -344,9 +343,9 @@ class CommonTest extends TestCase
 
         $this->assertDatabaseMissing('laralike_likes', [
             'likeable_type' => $stub->getMorphClass(),
-            'likeable_id' => $stub->id,
-            'user_id' => $user->id,
-            'type' => 'bookmark',
+            'likeable_id'   => $stub->id,
+            'user_id'       => $user->id,
+            'type'          => 'bookmark',
         ]);
 
         $this->assertEquals(0, $stub->likeCount);
@@ -363,12 +362,11 @@ class CommonTest extends TestCase
         $stub->like($randomUser);
         $stub->unlike();
 
-
         $this->assertDatabaseMissing('laralike_likes', [
             'likeable_type' => $stub->getMorphClass(),
-            'likeable_id' => $stub->id,
-            'user_id' => $user->id,
-            'type' => 'like',
+            'likeable_id'   => $stub->id,
+            'user_id'       => $user->id,
+            'type'          => 'like',
         ]);
 
         $this->assertDatabaseHas('laralike_likes', [
@@ -392,19 +390,18 @@ class CommonTest extends TestCase
         $stub->like($randomUser);
         $stub->unlike($randomUser);
 
-
         $this->assertDatabaseMissing('laralike_likes', [
             'likeable_type' => $stub->getMorphClass(),
-            'likeable_id' => $stub->id,
-            'user_id' => $randomUser->id,
-            'type' => 'like',
+            'likeable_id'   => $stub->id,
+            'user_id'       => $randomUser->id,
+            'type'          => 'like',
         ]);
 
         $this->assertDatabaseHas('laralike_likes', [
             'likeable_type' => $stub->getMorphClass(),
-            'likeable_id' => $stub->id,
-            'user_id' => $user->id,
-            'type' => 'like',
+            'likeable_id'   => $stub->id,
+            'user_id'       => $user->id,
+            'type'          => 'like',
         ]);
 
         $this->assertEquals(1, $stub->likeCount);
@@ -471,14 +468,14 @@ class CommonTest extends TestCase
 
         $this->assertDatabaseMissing('laralike_likes', [
             'likeable_type' => $stub1->getMorphClass(),
-            'likeable_id' => $stub1->id,
-            'type' => 'like',
+            'likeable_id'   => $stub1->id,
+            'type'          => 'like',
         ]);
 
         $this->assertDatabaseMissing('laralike_like_counters', [
             'likeable_type' => $stub1->getMorphClass(),
-            'likeable_id' => $stub1->id,
-            'type' => 'like',
+            'likeable_id'   => $stub1->id,
+            'type'          => 'like',
         ]);
 
         $results = LikeCounter::all();
