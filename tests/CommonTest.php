@@ -64,7 +64,7 @@ class CommonTest extends TestCase
         return User::query()->create([
             'email'    => $this->faker->unique()->email,
             'name'     => $this->faker->name,
-            'password' => Hash::make($this->faker->password)
+            'password' => Hash::make($this->faker->password),
         ]);
     }
 
