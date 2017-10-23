@@ -22,8 +22,7 @@
         "orchestra/database": "^3.5",
         "phpunit/phpunit": "~6.0",
         "mockery/mockery": "~0.9",
-        "fzaninotto/faker": "~1.4",
-        "php-coveralls/php-coveralls": "^1.0"
+        "fzaninotto/faker": "~1.4"
     },
     "autoload": {
         "psr-4": {
