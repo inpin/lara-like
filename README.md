@@ -3,6 +3,7 @@ LaraLike
 Importsnt note: this product is forked and aedit from base [laravel-likeable](https://github.com/rtconner/laravel-likeable) package.
 
 [![Build Status](https://travis-ci.org/inpin/lara-like.svg?branch=master)](https://travis-ci.org/inpin/lara-like)
+[![StyleCI](https://styleci.io/repos/107395044/shield?branch=master)](https://styleci.io/repos/107395044)
 [![Latest Stable Version](https://poser.pugx.org/inpin/lara-like/v/stable)](https://packagist.org/packages/inpin/lara-like)
 [![Total Downloads](https://poser.pugx.org/inpin/lara-like/downloads)](https://packagist.org/packages/inpin/lara-like)
 [![Latest Unstable Version](https://poser.pugx.org/inpin/lara-like/v/unstable)](https://packagist.org/packages/inpin/lara-like)
