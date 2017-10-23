@@ -62,8 +62,8 @@ class CommonTest extends TestCase
     public function createRandomUser()
     {
         return User::query()->create([
-            'email' => $this->faker->unique()->email,
-            'name' => $this->faker->name,
+            'email'    => $this->faker->unique()->email,
+            'name'     => $this->faker->name,
             'password' => Hash::make($this->faker->password)
         ]);
     }
@@ -215,7 +215,7 @@ class CommonTest extends TestCase
             $this->createRandomUser(),
             $this->createRandomUser(),
             $this->createRandomUser(),
-            $this->createRandomUser()
+            $this->createRandomUser(),
         ];
 
         foreach ($users as $user) {
@@ -241,7 +241,7 @@ class CommonTest extends TestCase
             $this->createRandomUser(),
             $this->createRandomUser(),
             $this->createRandomUser(),
-            $this->createRandomUser()
+            $this->createRandomUser(),
         ];
 
         foreach ($users as $user) {
@@ -371,9 +371,9 @@ class CommonTest extends TestCase
 
         $this->assertDatabaseHas('laralike_likes', [
             'likeable_type' => $stub->getMorphClass(),
-            'likeable_id' => $stub->id,
-            'user_id' => $randomUser->id,
-            'type' => 'like',
+            'likeable_id'   => $stub->id,
+            'user_id'       => $randomUser->id,
+            'type'          => 'like',
         ]);
 
         $this->assertEquals(1, $stub->likeCount);

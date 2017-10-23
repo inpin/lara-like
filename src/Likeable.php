@@ -2,7 +2,6 @@
 
 namespace Inpin\LaraLike;
 
-
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Foundation\Auth\User;
 
@@ -44,7 +43,6 @@ trait Likeable
             $query->where('user_id', '=', $guard->id)->where('type', $type);
         });
     }
-
 
     /**
      * Populate the $model->likes attribute.
@@ -177,7 +175,7 @@ trait Likeable
     }
 
     /**
-     * Private. Decrement the total like count stored in the counter
+     * Private. Decrement the total like count stored in the counter.
      *
      * @param string $type
      */
