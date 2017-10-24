@@ -407,6 +407,37 @@ class CommonTest extends TestCase
         $this->assertEquals(1, $stub->likeCount);
     }
 
+    public function testLikeCount()
+    {
+        $stub = $this->createRandomStub();
+        $user = $this->createRandomUser();
+        $this->actingAs($user);
+
+        $stub->like();
+
+        $this->assertEquals(1, $stub->likeCount());
+    }
+
+    public function testLikeCountWithType()
+    {
+        $stub = $this->createRandomStub();
+        $user = $this->createRandomUser();
+        $this->actingAs($user);
+
+        $stub->like(null, 'bookmark');
+        $stub->like();
+
+        $this->assertEquals(1, $stub->likeCount('bookmark'));
+        $this->assertEquals(1, $stub->likeCount());
+    }
+
+    public function testLikeCountZero()
+    {
+        $stub = $this->createRandomStub();
+
+        $this->assertEquals(0, $stub->likeCount());
+    }
+
     public function testWhereLikedBy()
     {
         $stubs = [

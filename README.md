@@ -59,6 +59,8 @@ $book->likes()->where('type', 'bookmark')
 $book->liked(); // check if currently logged in user liked the book
 $book->liked($myUserId);
 
+$book->likeCount($type); // determine number of likes for given $type (default type is 'like')
+
 Article::whereLikedBy($myUserId) // find only books where user liked them
 	->with('likeCounter') // highly suggested to allow eager load
 	->get();

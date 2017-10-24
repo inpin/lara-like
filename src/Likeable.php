@@ -154,6 +154,17 @@ trait Likeable
             ->exists();
     }
 
+    public function likeCount($type = 'like')
+    {
+        $counter = $this->likeCounter()->where('type', $type)->first();
+
+        if ($counter) {
+            return $counter->count;
+        } else {
+            return 0;
+        }
+    }
+
     /**
      * Private. Increment the total like count stored in the counter.
      *
