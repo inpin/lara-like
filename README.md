@@ -1,6 +1,6 @@
 LaraLike
 ============
-Importsnt note: this product is forked and aedit from base [laravel-likeable](https://github.com/rtconner/laravel-likeable) package.
+Important note: this product is forked and edited from base [laravel-likeable](https://github.com/rtconner/laravel-likeable) package.
 
 [![Build Status](https://travis-ci.org/inpin/lara-like.svg?branch=master)](https://travis-ci.org/inpin/lara-like)
 [![StyleCI](https://styleci.io/repos/107395044/shield?branch=master)](https://styleci.io/repos/107395044)
