@@ -5,7 +5,7 @@ namespace Tests;
 use Inpin\LaraLike\LaraLikeServiceProvider;
 use Orchestra\Database\ConsoleServiceProvider;
 
-class TestCase extends \Orchestra\Testbench\TestCase
+class LaraLikeTestCase extends \Orchestra\Testbench\TestCase
 {
     protected function getPackageProviders($app)
     {
