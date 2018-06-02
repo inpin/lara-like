@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Schema;
 use Inpin\LaraLike\Likeable;
 use Inpin\LaraLike\LikeCounter;
 
-class CommonTest extends TestCase
+class CommonTest extends LaraLikeTestCase
 {
     /**
      * @var Generator
