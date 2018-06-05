@@ -35,7 +35,7 @@ trait Likeable
     public function scopeWhereLikedBy($query, $guard = null, $type = 'like')
     {
         if (!($guard instanceof User)) {
-            $guard = $this->loggedInUser($guard);
+            $guard = $this->getLoggedInUserForLaraLike($guard);
         }
 
         return $query->whereHas('likes', function ($query) use ($type, $guard) {
@@ -84,7 +84,7 @@ trait Likeable
     public function like($guard = null, $type = 'like')
     {
         if (!($guard instanceof User) && (is_string($guard) || is_null($guard))) {
-            $guard = $this->loggedInUser($guard);
+            $guard = $this->getLoggedInUserForLaraLike($guard);
         }
 
         if ($guard instanceof User) {
@@ -113,7 +113,7 @@ trait Likeable
     public function unlike($guard = null, $type = 'like')
     {
         if (!($guard instanceof User) && (is_string($guard) || is_null($guard))) {
-            $guard = $this->loggedInUser($guard);
+            $guard = $this->getLoggedInUserForLaraLike($guard);
         }
 
         if ($guard instanceof User) {
@@ -145,7 +145,7 @@ trait Likeable
     public function liked($guard = null, $type = 'like')
     {
         if (!($guard instanceof User)) {
-            $guard = $this->loggedInUser($guard);
+            $guard = $this->getLoggedInUserForLaraLike($guard);
         }
 
         return $this->likes()
@@ -209,7 +209,7 @@ trait Likeable
      *
      * @return \Illuminate\Contracts\Auth\Authenticatable|null
      */
-    public function loggedInUser($guard)
+    public function getLoggedInUserForLaraLike($guard)
     {
         return auth($guard)->user();
     }
